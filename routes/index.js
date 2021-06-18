@@ -118,7 +118,23 @@ router.get('*', async ctx => {
   }
   const shortlink = await Shortlink.query().findOne('slug', pathname.slice(1))
   if (!shortlink) {
-    ctx.throw(404)
+    ctx.throw(404);
+    ctx.body=`<a href="https://exunclan.com"
+      ><body
+    style="
+      background-color: skyblue;
+      text-align: center;
+      display: flex;
+      flex-direction: column;
+    "
+  >
+    <h1 style="color: navy; font-size: 50px;">That address was Not Found</h1>
+    <h2 style="color: navy; font-size: 40px;">Error 404</h2>
+    <a href="https://exunclan.com"
+      ><img
+        src="https://exunclan.com/static/5804c2a0cb1a17967b0640fb38fa4b64/b1bf3/logo.png"
+    /></a>
+  </body>`
     return
   }
   ctx.redirect(shortlink.target)
